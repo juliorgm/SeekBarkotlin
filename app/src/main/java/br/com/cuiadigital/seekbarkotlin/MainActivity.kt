@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import br.com.cuiadigital.seekbarkotlin.customview.CustomSeekBar
 import br.com.cuiadigital.seekbarkotlin.customview.ProgressItem
 import br.com.cuiadigital.seekbarkotlin.model.UserLimit
@@ -67,6 +68,8 @@ class MainActivity : AppCompatActivity() {
         progressItemList.add(ProgressItem(R.color.pink_light, getPercentFrom(pinkLightSpan)))
 
         seekbarCustom.initData(progressItemList)
+
+        seekbarCustom.progressDrawable = ColorBarDrawable(intArrayOf(ContextCompat.getColor(this, R.color.pink_light),R.color.pink))
 
 
         seekbarCustom.invalidate()

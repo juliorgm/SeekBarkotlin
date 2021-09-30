@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable
 
 import android.graphics.Bitmap
 import android.view.View
+import androidx.core.graphics.drawable.toDrawable
 
 
 class CustomSeekBar @JvmOverloads constructor(
@@ -26,45 +27,12 @@ class CustomSeekBar @JvmOverloads constructor(
         //setTintBackgrount(mProgressItemsList[0], mProgressItemsList[1])
     }
 
-    fun setTintBackgrount(progressSpent: ProgressItem, progressMax: ProgressItem){
-        val progressBarWidth = getWidth()
-
-        val canvas = Canvas()
-
-        var progressSpentWith = ((progressSpent.progressPercent * width / 100).roundToInt())
-        var progressMaxWith= ((progressMax.progressPercent * width / 100).roundToInt())
-
-        val progressSpentPaint = Paint()
-        progressSpentPaint.color = resources.getColor(progressSpent.color)
-
-        val progressMaxPaint = Paint()
-        progressMaxPaint.color = resources.getColor(progressMax.color)
-
-
-        val progressRect = Rect()
-
-        progressRect[0, thumbOffset / 2, progressSpentWith] = height - thumbOffset / 2
-        canvas.drawRect(progressRect, progressSpentPaint)
-
-        progressRect[1, thumbOffset / 2, progressMaxWith] = height - thumbOffset / 2
-        canvas.drawRect(progressRect, progressMaxPaint)
-
-
-        val view = View(this.context)
-
-        val b: Bitmap = getBitmapFromView(canvas )
-        val drawable: Drawable = BitmapDrawable(resources, b)
-
-        progressDrawable = drawable
-    }
-
     fun getBitmapFromView(canvas: Canvas): Bitmap {
         var bitmap =
             Bitmap.createBitmap(this.width, this.height, Bitmap.Config.ARGB_8888)
         this.draw(canvas)
         return bitmap
     }
-
 
 
     override fun onDraw(canvas: Canvas) {
@@ -79,6 +47,8 @@ class CustomSeekBar @JvmOverloads constructor(
 
                 val progressPaint = Paint()
                 progressPaint.color = resources.getColor(progressItem.color)
+
+                progress.toDrawable()
 
                 progressItemWidth = ((progressItem.progressPercent * width / 100).roundToInt())
                 progressItemRight = lastProgressX + progressItemWidth

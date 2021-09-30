@@ -30,7 +30,8 @@
         android:id="@+id/tvMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="56dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="@+id/customseekbar"
         app:layout_constraintTop_toBottomOf="@+id/edMaxDefined" />
