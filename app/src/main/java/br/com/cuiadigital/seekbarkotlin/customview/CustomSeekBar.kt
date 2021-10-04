@@ -34,6 +34,13 @@ class CustomSeekBar @JvmOverloads constructor(
         return bitmap
     }
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+
+    }
+
+
+
 
     override fun onDraw(canvas: Canvas) {
         if (mProgressItemsList.size > 0) {
